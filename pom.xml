@@ -71,7 +71,7 @@
 				</executions>
 				<configuration>
 					<executable>ng</executable>
-					<workingDirectory>src/main/ui</workingDirectory>
+					<workingDirectory>src/main/resources/ui</workingDirectory>
 					<arguments>
 						<argument>build</argument>
 					</arguments>
