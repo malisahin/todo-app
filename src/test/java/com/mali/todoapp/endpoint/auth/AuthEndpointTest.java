@@ -11,12 +11,16 @@ import com.mali.todoapp.serviceView.user.UserServiceView;
 import com.mali.todoapp.util.Mapper;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -27,25 +31,31 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * @author mali.sahin
  * @since 9.12.2018.
  */
+@RunWith(SpringRunner.class)
 @WebMvcTest(value = AuthEndpoint.class, secure = false)
 public class AuthEndpointTest extends BaseTest {
+
+
+    @Autowired
+    public MockMvc mockMvc;
+
+
+    @Autowired
+    public ObjectMapper mapper;
+
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
 
     @Before
     public void setup() {
 
     }
 
-    @Autowired
-    MockMvc mockMvc;
-
     @MockBean
     UserServiceView userServiceViewMock;
 
     @MockBean
     UserService userServiceMock;
-
-    @Autowired
-    ObjectMapper objectMapper;
 
 
     @Test
@@ -64,16 +74,17 @@ public class AuthEndpointTest extends BaseTest {
         dto.email = email;
         dto.password = password;
 
-        ProcessResults res  = new ProcessResults(dto);
+        ProcessResults res = new ProcessResults(dto);
         //when
         Mockito.when(userServiceMock.login(any(UserDef.class))).thenReturn(user);
         Mockito.when(userServiceViewMock.login(any(UserDef.class))).thenReturn(res);
 
 
         // action
-        MvcResult perform = mockMvc.perform(get("/login/" + email + "/" + password)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new ProcessResults())))
+        MvcResult perform = mockMvc.perform(
+                get("/login/" + email + "/" + password)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsBytes(new ProcessResults())))
                 .andReturn();
 
         perform.getResponse();

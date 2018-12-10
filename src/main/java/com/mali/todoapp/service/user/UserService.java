@@ -9,4 +9,6 @@ import com.mali.todoapp.domain.UserDef;
 
 public interface UserService {
     UserDef login(UserDef user);
+
+    UserDef create(UserDef userDef);
 }

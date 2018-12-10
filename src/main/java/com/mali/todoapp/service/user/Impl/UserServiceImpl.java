@@ -15,4 +15,9 @@ public class UserServiceImpl implements UserService {
     public UserDef login(UserDef user) {
         return null;
     }
+
+    @Override
+    public UserDef create(UserDef userDef) {
+        return null;
+    }
 }

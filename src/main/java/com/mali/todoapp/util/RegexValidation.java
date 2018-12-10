@@ -9,11 +9,18 @@ import java.util.regex.Pattern;
  */
 public class RegexValidation {
 
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+    private static final Pattern VALID_EMAIL_ADDRESS_PATTERN =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
+    private static final Pattern VALID_PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+
     public static boolean validateEmail(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        Matcher matcher = VALID_EMAIL_ADDRESS_PATTERN.matcher(emailStr);
+        return matcher.find();
+    }
+
+    public static boolean validatePassword(String password) {
+        Matcher matcher = VALID_PASSWORD_PATTERN.matcher(password);
         return matcher.find();
     }
 }
