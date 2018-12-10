@@ -2,7 +2,6 @@ package com.mali.todoapp.endpoint.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mali.todoapp.BaseTest;
-import com.mali.todoapp.domain.ProcessResults;
 import com.mali.todoapp.domain.UserDef;
 import com.mali.todoapp.dto.ProcessResultDTO;
 import com.mali.todoapp.dto.UserDefDTO;
@@ -74,17 +73,16 @@ public class AuthEndpointTest extends BaseTest {
         dto.email = email;
         dto.password = password;
 
-        ProcessResults res = new ProcessResults(dto);
         //when
         Mockito.when(userServiceMock.login(any(UserDef.class))).thenReturn(user);
-        Mockito.when(userServiceViewMock.login(any(UserDef.class))).thenReturn(res);
+        Mockito.when(userServiceViewMock.login(any(UserDef.class))).thenReturn(dto);
 
 
         // action
         MvcResult perform = mockMvc.perform(
                 get("/login/" + email + "/" + password)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsBytes(new ProcessResults())))
+                        .content(mapper.writeValueAsBytes(new ProcessResultDTO())))
                 .andReturn();
 
         perform.getResponse();

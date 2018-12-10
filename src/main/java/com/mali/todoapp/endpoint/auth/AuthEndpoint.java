@@ -1,8 +1,8 @@
 package com.mali.todoapp.endpoint.auth;
 
-import com.mali.todoapp.domain.ProcessResults;
 import com.mali.todoapp.domain.UserDef;
 import com.mali.todoapp.dto.ProcessResultDTO;
+import com.mali.todoapp.dto.UserDefDTO;
 import com.mali.todoapp.endpoint.BaseEndpoint;
 import com.mali.todoapp.serviceView.user.UserServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +30,13 @@ public class AuthEndpoint extends BaseEndpoint {
 
         try {
 
-            ProcessResults result = userService.login(new UserDef(email, password));
+            UserDefDTO user = userService.login(new UserDef(email, password));
 
-            return new ResponseEntity<>(convertDomainToDto(result), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(new ProcessResultDTO.Builder().addObject(user).build(), HttpStatus.ACCEPTED);
+
         } catch (Exception e) {
-            return new ResponseEntity<>(convertExceptionToDto(e), HttpStatus.BAD_REQUEST);
-        }
+            return new ResponseEntity<>(new ProcessResultDTO.Builder().addErrorMessage(e.getMessage()).build(), HttpStatus.BAD_REQUEST);
 
+        }
     }
 }

@@ -2,10 +2,7 @@ package com.mali.todoapp.domain;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -13,24 +10,25 @@ import javax.validation.constraints.NotBlank;
  * @since 8.12.2018.
  */
 @Data
+@Entity
 @Table(name = "USER_DEF", schema = "todoapp")
 public class UserDef extends BaseDomain {
 
 
     @Id
-    @GeneratedValue(generator = "user_generator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
-    @Column(columnDefinition = "user_name")
+    @Column(name = "USER_NAME")
     private String name;
 
     @NotBlank
-    @Column(columnDefinition = "email")
+    @Column(name = "EMAIL")
     private String email;
 
     @NotBlank
-    @Column(columnDefinition = "user_password")
+    @Column(name = "USER_PASSWORD")
     private String password;
 
     public UserDef(@NotBlank String email, @NotBlank String password) {

@@ -1,6 +1,5 @@
 package com.mali.todoapp.endpoint.user;
 
-import com.mali.todoapp.domain.ProcessResults;
 import com.mali.todoapp.dto.ProcessResultDTO;
 import com.mali.todoapp.dto.UserDefDTO;
 import com.mali.todoapp.endpoint.BaseEndpoint;
@@ -31,11 +30,13 @@ public class UserEndpoint extends BaseEndpoint {
 
         try {
 
-            ProcessResults result = userServiceView.create(userDto);
+            UserDefDTO user = userServiceView.create(userDto);
 
-            return new ResponseEntity<>(convertDomainToDto(result), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(new ProcessResultDTO.Builder().addObject(user).build(), HttpStatus.ACCEPTED);
+
         } catch (Exception e) {
-            return new ResponseEntity<>(convertExceptionToDto(e), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ProcessResultDTO.Builder().addErrorMessage(e.getMessage()).build(), HttpStatus.BAD_REQUEST);
+
         }
     }
 

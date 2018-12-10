@@ -1,7 +1,6 @@
 package com.mali.todoapp.serviceView.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mali.todoapp.domain.ProcessResults;
 import com.mali.todoapp.domain.UserDef;
 import com.mali.todoapp.dto.UserDefDTO;
 import com.mali.todoapp.service.user.UserService;
@@ -24,12 +23,11 @@ public class UserServiceView {
     @Autowired
     UserService userService;
 
-    public ProcessResults login(UserDef user) throws ValidationException {
+    public UserDefDTO login(UserDef user) throws ValidationException {
         user = userService.login(user);
 
         user.setPassword(null);
-        ProcessResults res = new ProcessResults(convertDomainToDto(user));
-        return res;
+        return  convertDomainToDto(user);
     }
 
     private UserDefDTO convertDomainToDto(UserDef domain) throws ValidationException {
@@ -66,22 +64,24 @@ public class UserServiceView {
             throw new ValidationException(Messages.userEmailIsInvalid);
 
 
-        if(user.getPassword() == null || user.getPassword().isEmpty())
+        if (user.getPassword() == null || user.getPassword().isEmpty())
             throw new NullPointerException(Messages.userPasswordCannotBeNull);
 
-        if(!RegexValidation.validatePassword(user.getPassword()))
+        if (!RegexValidation.validatePassword(user.getPassword()))
             throw new ValidationException(Messages.userPasswordIsInvalid);
 
     }
 
 
-    public ProcessResults create(UserDefDTO user) {
+    public UserDefDTO create(UserDefDTO user) {
         UserDef userDef = convertDtoToDomain(user);
         validateUser(userDef);
 
         userDef = userService.create(userDef);
 
-        return new ProcessResults(userDef);
+        UserDefDTO dto = convertDomainToDto(userDef);
+        dto.password = null;
+        return dto;
 
     }
 }

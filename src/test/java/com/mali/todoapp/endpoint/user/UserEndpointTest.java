@@ -2,7 +2,6 @@ package com.mali.todoapp.endpoint.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mali.todoapp.BaseTest;
-import com.mali.todoapp.domain.ProcessResults;
 import com.mali.todoapp.dto.UserDefDTO;
 import com.mali.todoapp.serviceView.user.UserServiceView;
 import com.mali.todoapp.util.Mapper;
@@ -60,11 +59,8 @@ public class UserEndpointTest extends BaseTest {
         userDto.name = userName;
         userDto.password = password;
 
-        ProcessResults results = new ProcessResults();
-        results.addObject(userDto);
-
         // wheb
-        Mockito.when(userServiceViewMock.create(any(UserDefDTO.class))).thenReturn(results);
+        Mockito.when(userServiceViewMock.create(any(UserDefDTO.class))).thenReturn(userDto);
 
 
         //action
