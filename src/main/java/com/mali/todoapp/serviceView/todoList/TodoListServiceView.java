@@ -3,11 +3,13 @@ package com.mali.todoapp.serviceView.todoList;
 import com.mali.todoapp.domain.TodoList;
 import com.mali.todoapp.dto.TodoListDTO;
 import com.mali.todoapp.service.todoList.TodoListService;
+import com.mali.todoapp.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author mali.sahin
@@ -64,6 +66,35 @@ public class TodoListServiceView {
         });
 
         return dtoList;
+    }
+
+    public TodoListDTO update(TodoListDTO todoListDTO) {
+
+        Optional<TodoList> todoList = todoListService.findById(todoListDTO.id);
+
+        if (!todoList.isPresent()) {
+            throw new NullPointerException(Messages.TODO_LIST_IS_NOT_FOUND);
+        }
+
+        return convertDomainToDto(todoList.get());
+    }
+
+
+/*
+    public List<TodoListDTO> findByFilter(TodoListFilterDTO filter) {
+
+        List<TodoListDTO> dtoList = new ArrayList<>();
+
+        Page<TodoList> page = todoListService.findByFilter(filter);
+        page.get().forEach(item -> {
+            dtoList.add(convertDomainToDto(item));
+        });
+
+        return dtoList;
+    }*/
+
+    public void  deleteById(Long id){
+        todoListService.deleteById(id);
     }
 
 

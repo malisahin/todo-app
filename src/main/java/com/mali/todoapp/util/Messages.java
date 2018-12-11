@@ -14,4 +14,6 @@ public class Messages {
     public static String USER_PASSWORD_CANNOT_BE_NULL = "USER PASSWORD can not be null";
     public static String USER_PASSWORD_IS_INVALID = "USER PASSWORD is invalid! ";
     public static  String USER_IS_NOT_FOUND = "USER is not found";
+    public static  String TODO_LIST_IS_NOT_FOUND = "TODO LIST is not found";
+    public static  String TODO_ITEM_IS_NOT_FOUND = "TODO ITEM is not found";
 }

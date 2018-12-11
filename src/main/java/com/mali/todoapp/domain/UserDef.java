@@ -1,5 +1,7 @@
 package com.mali.todoapp.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -8,7 +10,9 @@ import javax.validation.constraints.NotBlank;
  * @since 8.12.2018.
  */
 
-@Table(name = "USER_DEF")
+@Data
+@Table(name = "USER_DEF", schema = "todoapp")
+@Entity
 public class UserDef extends BaseDomain {
 
     @Id

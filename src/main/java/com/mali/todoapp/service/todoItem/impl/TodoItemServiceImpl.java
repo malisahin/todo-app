@@ -6,6 +6,9 @@ import com.mali.todoapp.service.todoItem.TodoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  * @author mali.sahin
  * @since 10.12.2018.
@@ -24,7 +27,18 @@ public class TodoItemServiceImpl implements TodoItemService {
         repository.deleteById(id);
     }
 
-    /*public List<TodoItem> getTodoListItems(Long listId) {
+    @Override
+    public List<TodoItem> findByListId(Long listId) {
         return repository.findByListId(listId);
-    }*/
+    }
+
+    @Override
+    public Optional<TodoItem> find(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public TodoItem update(TodoItem item) {
+        return repository.save(item);
+    }
 }

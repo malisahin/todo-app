@@ -1,10 +1,11 @@
 package com.mali.todoapp.domain;
 
-import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,9 +14,7 @@ import java.util.Date;
  * @since 8.12.2018.
  */
 
-@Data
-@Table(schema = "todoapp")
-@Entity
+
 public abstract class BaseDomain implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)

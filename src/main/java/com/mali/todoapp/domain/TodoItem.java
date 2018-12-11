@@ -1,5 +1,7 @@
 package com.mali.todoapp.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +9,10 @@ import javax.persistence.*;
  * @since 10.12.2018.
  */
 
-@Table(name = "TODO_ITEM")
+
+@Data
+@Table(name = "TODO_ITEM", schema = "todoapp")
+@Entity
 public class TodoItem extends BaseDomain {
 
     @Id

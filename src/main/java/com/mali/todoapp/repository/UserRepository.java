@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserDef, Long> {
 
-    /*@Transactional
-    UserDef findUserDefByEmail(String email);*/
+    UserDef findUserDefByEmail(String email);
+
 }

@@ -1,8 +1,9 @@
-package com.mali.todoapp.endpoint.todoList;
+package com.mali.todoapp.endpoint.todoItem;
 
 import com.mali.todoapp.BaseTest;
+import com.mali.todoapp.dto.TodoItemDTO;
 import com.mali.todoapp.dto.TodoListDTO;
-import com.mali.todoapp.serviceView.todoList.TodoListServiceView;
+import com.mali.todoapp.serviceView.todoItem.TodoItemServiceView;
 import com.mali.todoapp.util.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,31 +25,32 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 /**
  * @author mali.sahin
- * @since 10.12.2018.
+ * @since 11.12.2018.
  */
-@RunWith(SpringRunner.class)
-@WebMvcTest(value = TodoListEndpoint.class, secure = false)
-public class TodoListEndpointTest extends BaseTest {
 
+@RunWith(SpringRunner.class)
+@WebMvcTest(value = TodoItemEndpoint.class, secure = false)
+public class TodoItemEndpointTest extends BaseTest {
 
     @MockBean
-    TodoListServiceView todoListServiceView;
+    TodoItemServiceView todoItemServiceView;
 
+    private static final String BASE_URL = "/todoItem/";
 
     @Test
     public void save_verifyControllerSignature_returnOK() throws Exception {
 
         // given
 
-        TodoListDTO dto = new TodoListDTO();
-        dto.description = "TEST_DESCRIPTION";
+        TodoItemDTO dto = new TodoItemDTO();
+        dto.explanation = "TEST_DESCRIPTION";
         dto.id = 10L;
 
-        when(todoListServiceView.save(any(TodoListDTO.class))).thenReturn(dto);
+        when(todoItemServiceView.save(any(TodoItemDTO.class))).thenReturn(dto);
 
         // action
         MvcResult perform = mockMvc.perform(
-                post("/todoList/")
+                post(BASE_URL)
                         .content(mapper.writeValueAsString(dto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
@@ -58,24 +60,26 @@ public class TodoListEndpointTest extends BaseTest {
         // verify
         assertNotEquals(perform.getResponse().getContentAsString(), "");
         assertEquals(perform.getResponse().getStatus(), HttpStatus.OK.value());
+
     }
 
     @Test
-    public void findbyUserId_verifyControllerSignature_returnOK() throws Exception {
+    public void findByListId() throws Exception {
 
         // given
-        List<TodoListDTO> todoList = new ArrayList<>();
+        List<TodoItemDTO> todoList = new ArrayList<>();
 
-        todoList.add(new TodoListDTO());
-        todoList.add(new TodoListDTO());
-        todoList.add(new TodoListDTO());
-        todoList.add(new TodoListDTO());
+        todoList.add(new TodoItemDTO());
+        todoList.add(new TodoItemDTO());
+        todoList.add(new TodoItemDTO());
+        todoList.add(new TodoItemDTO());
+
 
         // when
-        when(todoListServiceView.findByUserId(any(Long.TYPE))).thenReturn(todoList);
+        when(todoItemServiceView.findByListId(any(Long.TYPE))).thenReturn(todoList);
 
         MvcResult perform = mockMvc.perform(
-                get("/todoList/1233/")
+                get(BASE_URL + "1233/")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
@@ -89,6 +93,39 @@ public class TodoListEndpointTest extends BaseTest {
         List<TodoListDTO> resultList = Mapper.convertJsonStringToListObject(content, TodoListDTO.class);
         assertEquals(resultList.size(), todoList.size());
     }
+
+    @Test
+    public void update() throws Exception {
+        // given
+        TodoItemDTO todoItemDTO = new TodoItemDTO();
+
+        // when
+        when(todoItemServiceView.update(any(TodoItemDTO.class))).thenReturn(todoItemDTO);
+
+        MvcResult perform = mockMvc.perform(
+                put(BASE_URL)
+                        .content(mapper.writeValueAsString(todoItemDTO))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        perform.getResponse();
+
+        String content = perform.getResponse().getContentAsString();
+
+        // verify
+        assertNotEquals(content, "");
+        assertEquals(perform.getResponse().getStatus(), HttpStatus.OK.value());
+    }
+
+    @Test
+    public void delete() {
+    }
+}
+
+/*
+*
+*
+
 
     @Test
     public void update_verifyControllerSignature_returnOK() throws Exception {
@@ -114,29 +151,4 @@ public class TodoListEndpointTest extends BaseTest {
         assertEquals(perform.getResponse().getStatus(), HttpStatus.OK.value());
     }
 
-
-  /*  @Test
-    public void delete_verifyControllerSignature_returnOK() throws Exception {
-
-        // given
-        TodoListDTO todoList = new TodoListDTO();
-
-        // when
-        when(todoListServiceView.deleteById(any(Long.class))).thenAnswer(Void.class);
-        doNothing().when(mock(TodoListServiceView.class).deleteById(isA(Long.class)));
-
-        MvcResult perform = mockMvc.perform(
-                delete("/todoList/123/")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andReturn();
-
-        perform.getResponse();
-
-        String content = perform.getResponse().getContentAsString();
-
-        // verify
-        assertNotEquals(content, "");
-        assertEquals(perform.getResponse().getStatus(), HttpStatus.OK.value());
-    }
 */
-}
