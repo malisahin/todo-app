@@ -1,7 +1,5 @@
 package com.mali.todoapp.domain;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -9,14 +7,13 @@ import javax.validation.constraints.NotBlank;
  * @author mali.sahin
  * @since 8.12.2018.
  */
-@Data
-@Entity
-@Table(name = "USER_DEF", schema = "todoapp")
-public class UserDef extends BaseDomain {
 
+@Table(name = "USER_DEF")
+public class UserDef extends BaseDomain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
 
     @NotBlank

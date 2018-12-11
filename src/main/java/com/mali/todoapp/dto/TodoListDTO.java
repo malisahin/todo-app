@@ -5,20 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author mali.sahin
- * @since 9.12.2018.
+ * @since 10.12.2018.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserDefDTO {
+public class TodoListDTO {
 
     @JsonProperty
-    public Long id;
+    public long id;
+
+    @JsonProperty
+    public long userId;
 
     @JsonProperty
     public String name;
 
     @JsonProperty
-    public String email;
-
-    @JsonProperty
-    public String password;
+    public String description;
 }

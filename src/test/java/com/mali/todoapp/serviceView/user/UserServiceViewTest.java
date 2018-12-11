@@ -53,7 +53,7 @@ public class UserServiceViewTest extends BaseTest {
         UserDefDTO user = new UserDefDTO();
 
         exception.expect(NullPointerException.class);
-        exception.expectMessage(Messages.userNameCannotBeNull);
+        exception.expectMessage(Messages.USER_NAME_CANNOT_BE_NULL);
 
         //action
         userServiceViewMock.create(user);
@@ -68,7 +68,7 @@ public class UserServiceViewTest extends BaseTest {
         user.name = "test_user";
 
         exception.expect(NullPointerException.class);
-        exception.expectMessage(Messages.userEmailCannotBeNull);
+        exception.expectMessage(Messages.USER_EMAIL_CANNOT_BE_NULL);
 
         //action
         userServiceViewMock.create(user);
@@ -84,7 +84,7 @@ public class UserServiceViewTest extends BaseTest {
         user.email = "test_email";
 
         exception.expect(ValidationException.class);
-        exception.expectMessage(Messages.userEmailIsInvalid);
+        exception.expectMessage(Messages.USER_EMAIL_IS_INVALID);
 
         //action
         userServiceViewMock.create(user);
@@ -102,7 +102,7 @@ public class UserServiceViewTest extends BaseTest {
 
         // verify
         exception.expect(NullPointerException.class);
-        exception.expectMessage(Messages.userPasswordCannotBeNull);
+        exception.expectMessage(Messages.USER_PASSWORD_CANNOT_BE_NULL);
 
         // action
         userServiceViewMock.create(user);
@@ -120,7 +120,7 @@ public class UserServiceViewTest extends BaseTest {
 
         // verify
         exception.expect(ValidationException.class);
-        exception.expectMessage(Messages.userPasswordIsInvalid);
+        exception.expectMessage(Messages.USER_PASSWORD_IS_INVALID);
 
         // action
         userServiceViewMock.create(user);
