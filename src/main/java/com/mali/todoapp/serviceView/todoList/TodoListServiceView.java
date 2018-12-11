@@ -6,6 +6,9 @@ import com.mali.todoapp.service.todoList.TodoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author mali.sahin
  * @since 10.12.2018.
@@ -49,6 +52,18 @@ public class TodoListServiceView {
         domain.setUserId(dto.userId);
 
         return domain;
+    }
+
+    public List<TodoListDTO> findByUserId(Long userId) {
+
+        List<TodoList> todoListList = todoListService.findByUserId(userId);
+        List<TodoListDTO> dtoList = new ArrayList<>();
+
+        todoListList.forEach(todoList -> {
+            dtoList.add(convertDomainToDto(todoList));
+        });
+
+        return dtoList;
     }
 
 

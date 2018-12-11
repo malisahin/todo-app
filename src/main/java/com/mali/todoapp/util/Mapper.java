@@ -6,6 +6,8 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mali.todoapp.dto.ProcessResultDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author mali.sahin
@@ -30,6 +32,29 @@ public class Mapper {
         json = mapper.writeValueAsString(resultDTO.objects.get(0));
 
         return mapper.readValue(json, type);
+
+    }
+
+    public static <T> List<T> convertJsonStringToListObject(String json, Class<T> type) throws IOException {
+
+
+        List<T> resultList = new ArrayList<>();
+        ProcessResultDTO resultDTO = mapper.readValue(json, ProcessResultDTO.class);
+
+
+        resultDTO.objects.forEach(dto -> {
+            try {
+                String dtoString = mapper.writeValueAsString(dto);
+                resultList.add(mapper.readValue(dtoString, type));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        return resultList;
+
 
     }
 }

@@ -6,6 +6,8 @@ import com.mali.todoapp.service.todoList.TodoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author mali.sahin
  * @since 10.12.2018.
@@ -29,5 +31,10 @@ public class TodoListServiceImpl implements TodoListService {
     @Override
     public void remove(TodoList list) {
 
+    }
+
+    @Override
+    public List<TodoList> findByUserId(Long userId) {
+        return listRepository.findByUserId(userId);
     }
 }

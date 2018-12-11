@@ -74,6 +74,11 @@ public class ProcessResultDTO {
             return this;
         }
 
+        public Builder setObjectAsList(List list) {
+            this.objects = list;
+            return this;
+        }
+
         public Builder addErrorMessage(String error) {
             this.errorMessages.add(error);
             return this;
