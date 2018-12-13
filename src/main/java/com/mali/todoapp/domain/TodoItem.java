@@ -21,11 +21,11 @@ public class TodoItem /*extends BaseDomain*/ {
     @Id
     @GeneratedValue(generator = "todo_item_generator")
     @Column(name = "ID", updatable = false, nullable = false)
-    private long id;
+    private Long id;
 
 
     @Column(name = "LIST_ID", nullable = false)
-    private long listId;
+    private Long listId;
 
     @Column(name = "EXPLANATION", nullable = false)
     private String explanation;
@@ -41,6 +41,30 @@ public class TodoItem /*extends BaseDomain*/ {
     private Date updDate;
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getListId() {
+        return listId;
+    }
+
+    public void setListId(Long listId) {
+        this.listId = listId;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
     public Date getCreDate() {
         return creDate;
     }
@@ -55,30 +79,5 @@ public class TodoItem /*extends BaseDomain*/ {
 
     public void setUpdDate(Date updDate) {
         this.updDate = updDate;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getListId() {
-        return listId;
-    }
-
-    public void setListId(long listId) {
-        this.listId = listId;
-    }
-
-    public String getExplanation() {
-        return explanation;
-    }
-
-    public void setExplanation(String explanation) {
-        this.explanation = explanation;
     }
 }

@@ -1,39 +1,19 @@
-package com.mali.todoapp.serviceView.user;
+package com.mali.todoapp.service.user.Impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mali.todoapp.domain.UserDef;
 import com.mali.todoapp.dto.UserDefDTO;
-import com.mali.todoapp.service.user.UserService;
 import com.mali.todoapp.util.Messages;
 import com.mali.todoapp.util.RegexValidation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.validation.ValidationException;
 
 /**
  * @author mali.sahin
- * @since 9.12.2018.
+ * @since 13.12.2018.
  */
-@Component
-public class UserServiceView {
+public class UserMapper {
 
-    @Autowired
-    private ObjectMapper mapper;
-
-    @Autowired
-    private UserService userService;
-
-    public UserDefDTO login(UserDef user) throws ValidationException {
-        user = userService.login(user);
-
-        UserDefDTO dto = convertDomainToDto(user);
-
-        dto.password = null;
-        return dto;
-    }
-
-    private UserDefDTO convertDomainToDto(UserDef domain) throws ValidationException {
+     UserDefDTO convertDomainToDto(UserDef domain) throws ValidationException {
         validateUser(domain);
 
         UserDefDTO dto = new UserDefDTO();
@@ -45,7 +25,7 @@ public class UserServiceView {
         return dto;
     }
 
-    private UserDef convertDtoToDomain(UserDefDTO dto) {
+     UserDef convertDtoToDomain(UserDefDTO dto) {
         UserDef domain = new UserDef();
         domain.setEmail(dto.email);
         domain.setPassword(dto.password);
@@ -55,7 +35,7 @@ public class UserServiceView {
         return domain;
     }
 
-    private void validateUser(UserDef user) throws ValidationException {
+     void validateUser(UserDef user) throws ValidationException {
 
         if (user.getName() == null || user.getName().isEmpty())
             throw new NullPointerException(Messages.USER_NAME_CANNOT_BE_NULL);
@@ -75,16 +55,4 @@ public class UserServiceView {
 
     }
 
-
-    public UserDefDTO create(UserDefDTO user) {
-        UserDef userDef = convertDtoToDomain(user);
-        validateUser(userDef);
-
-        userDef = userService.create(userDef);
-
-        UserDefDTO dto = convertDomainToDto(userDef);
-        dto.password = null;
-        return dto;
-
-    }
 }

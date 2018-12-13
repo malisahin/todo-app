@@ -3,7 +3,7 @@ package com.mali.todoapp.endpoint.user;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mali.todoapp.BaseTest;
 import com.mali.todoapp.dto.UserDefDTO;
-import com.mali.todoapp.serviceView.user.UserServiceView;
+import com.mali.todoapp.service.user.UserService;
 import com.mali.todoapp.util.Mapper;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -43,7 +43,7 @@ public class UserEndpointTest extends BaseTest {
     public final ExpectedException exception = ExpectedException.none();
 
     @MockBean
-    UserServiceView userServiceViewMock;
+    UserService userService;
 
 
     private static String email = "test@test.com";
@@ -60,12 +60,12 @@ public class UserEndpointTest extends BaseTest {
         userDto.password = password;
 
         // wheb
-        Mockito.when(userServiceViewMock.create(any(UserDefDTO.class))).thenReturn(userDto);
+        Mockito.when(userService.create(any(UserDefDTO.class))).thenReturn(userDto);
 
 
         //action
         MvcResult perform = mockMvc.perform(
-                post("/user")
+                post("/user/")
                         .content(mapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
         ).andReturn();
@@ -84,4 +84,6 @@ public class UserEndpointTest extends BaseTest {
         Assert.assertEquals(outputUser.password, password);
 
     }
+
+
 }

@@ -3,7 +3,7 @@ package com.mali.todoapp.endpoint.user;
 import com.mali.todoapp.dto.ProcessResultDTO;
 import com.mali.todoapp.dto.UserDefDTO;
 import com.mali.todoapp.endpoint.BaseEndpoint;
-import com.mali.todoapp.serviceView.user.UserServiceView;
+import com.mali.todoapp.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,18 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/users/")
+@RequestMapping("/user/")
 public class UserEndpoint extends BaseEndpoint {
 
     @Autowired
-    UserServiceView userServiceView;
+    UserService userService;
 
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ProcessResultDTO> create(@RequestBody UserDefDTO userDto) {
 
         try {
 
-            UserDefDTO user = userServiceView.create(userDto);
+            UserDefDTO user = userService.create(userDto);
 
             return new ResponseEntity<>(new ProcessResultDTO.Builder().addObject(user).build(), HttpStatus.ACCEPTED);
 

@@ -1,9 +1,8 @@
 package com.mali.todoapp.service.todoList;
 
-import com.mali.todoapp.domain.TodoList;
+import com.mali.todoapp.dto.TodoListDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author mali.sahin
@@ -11,17 +10,11 @@ import java.util.Optional;
  */
 public interface TodoListService {
 
-    TodoList save(TodoList list);
+    TodoListDTO save(TodoListDTO todoListDTO);
 
-    /*TodoList update(TodoList list);
+    List<TodoListDTO> findByUserId(Long userId);
 
-    void remove(TodoList list);
-*/
-    List<TodoList> findByUserId(Long userId);
-
-    Optional<TodoList> findById(Long id);
-
-    //Page<TodoList> findByFilter(TodoListFilterDTO filter);
+    TodoListDTO update(TodoListDTO todoListDTO);
 
     void deleteById(Long id);
 }

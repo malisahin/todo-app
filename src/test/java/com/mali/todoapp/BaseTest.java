@@ -28,25 +28,6 @@ public class BaseTest {
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
-    /*@Test
-    public void base_toCallStaticLibs() throws Exception {
-
-        // given
-
-        when(getHello(any())).thenReturn("HELLO");
-
-        // action
-
-        String result = getHello("");
-
-        // verify
-        assertNotEquals(result, "");
-        assertEquals(result,"HELLO");
-    }
-
-    private String getHello(String param) {
-        return "HELLO";
-    }*/
 
 
 }

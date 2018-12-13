@@ -1,10 +1,9 @@
 package com.mali.todoapp.service.todoItem;
 
-import com.mali.todoapp.domain.TodoItem;
+import com.mali.todoapp.dto.TodoItemDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author mali.sahin
@@ -14,13 +13,11 @@ import java.util.Optional;
 public interface TodoItemService {
 
 
-    TodoItem save(TodoItem itemDTO);
+    TodoItemDTO save(TodoItemDTO itemDTO);
 
-    List<TodoItem> findByListId(Long listId);
+    List<TodoItemDTO> findByListId(Long listId);
 
-    Optional<TodoItem> find(Long id);
-
-    TodoItem update(TodoItem item);
+    TodoItemDTO update(TodoItemDTO item);
 
     void deleteById(Long id);
 

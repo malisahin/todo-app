@@ -13,11 +13,11 @@ import java.util.Date;
 public class TodoItemDTO {
 
     @JsonProperty
-    public long id;
+    public Long id;
 
 
     @JsonProperty
-    public long listId;
+    public Long listId;
 
     @JsonProperty
     public String explanation;

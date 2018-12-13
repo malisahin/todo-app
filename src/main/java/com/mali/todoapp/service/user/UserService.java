@@ -1,6 +1,9 @@
 package com.mali.todoapp.service.user;
 
 import com.mali.todoapp.domain.UserDef;
+import com.mali.todoapp.dto.UserDefDTO;
+
+import javax.validation.ValidationException;
 
 /**
  * @author mali.sahin
@@ -8,7 +11,8 @@ import com.mali.todoapp.domain.UserDef;
  */
 
 public interface UserService {
-    UserDef login(UserDef user);
 
-    UserDef create(UserDef userDef);
+    UserDefDTO login(UserDef user) throws ValidationException;
+
+    UserDefDTO create(UserDefDTO user) throws ValidationException;
 }

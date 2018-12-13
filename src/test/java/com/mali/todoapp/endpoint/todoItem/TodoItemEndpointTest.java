@@ -3,7 +3,7 @@ package com.mali.todoapp.endpoint.todoItem;
 import com.mali.todoapp.BaseTest;
 import com.mali.todoapp.dto.TodoItemDTO;
 import com.mali.todoapp.dto.TodoListDTO;
-import com.mali.todoapp.serviceView.todoItem.TodoItemServiceView;
+import com.mali.todoapp.service.todoItem.TodoItemService;
 import com.mali.todoapp.util.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class TodoItemEndpointTest extends BaseTest {
 
     @MockBean
-    TodoItemServiceView todoItemServiceView;
+    TodoItemService todoItemService;
 
     private static final String BASE_URL = "/todoItem/";
 
@@ -46,7 +46,7 @@ public class TodoItemEndpointTest extends BaseTest {
         dto.explanation = "TEST_DESCRIPTION";
         dto.id = 10L;
 
-        when(todoItemServiceView.save(any(TodoItemDTO.class))).thenReturn(dto);
+        when(todoItemService.save(any(TodoItemDTO.class))).thenReturn(dto);
 
         // action
         MvcResult perform = mockMvc.perform(
@@ -76,7 +76,7 @@ public class TodoItemEndpointTest extends BaseTest {
 
 
         // when
-        when(todoItemServiceView.findByListId(any(Long.TYPE))).thenReturn(todoList);
+        when(todoItemService.findByListId(any(Long.TYPE))).thenReturn(todoList);
 
         MvcResult perform = mockMvc.perform(
                 get(BASE_URL + "1233/")
@@ -100,7 +100,7 @@ public class TodoItemEndpointTest extends BaseTest {
         TodoItemDTO todoItemDTO = new TodoItemDTO();
 
         // when
-        when(todoItemServiceView.update(any(TodoItemDTO.class))).thenReturn(todoItemDTO);
+        when(todoItemService.update(any(TodoItemDTO.class))).thenReturn(todoItemDTO);
 
         MvcResult perform = mockMvc.perform(
                 put(BASE_URL)

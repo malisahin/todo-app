@@ -2,7 +2,7 @@ package com.mali.todoapp.endpoint.todoList;
 
 import com.mali.todoapp.BaseTest;
 import com.mali.todoapp.dto.TodoListDTO;
-import com.mali.todoapp.serviceView.todoList.TodoListServiceView;
+import com.mali.todoapp.service.todoList.TodoListService;
 import com.mali.todoapp.util.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class TodoListEndpointTest extends BaseTest {
 
 
     @MockBean
-    TodoListServiceView todoListServiceView;
+    TodoListService todoListService;
 
 
     @Test
@@ -44,7 +44,7 @@ public class TodoListEndpointTest extends BaseTest {
         dto.description = "TEST_DESCRIPTION";
         dto.id = 10L;
 
-        when(todoListServiceView.save(any(TodoListDTO.class))).thenReturn(dto);
+        when(todoListService.save(any(TodoListDTO.class))).thenReturn(dto);
 
         // action
         MvcResult perform = mockMvc.perform(
@@ -72,7 +72,7 @@ public class TodoListEndpointTest extends BaseTest {
         todoList.add(new TodoListDTO());
 
         // when
-        when(todoListServiceView.findByUserId(any(Long.TYPE))).thenReturn(todoList);
+        when(todoListService.findByUserId(any(Long.TYPE))).thenReturn(todoList);
 
         MvcResult perform = mockMvc.perform(
                 get("/todoList/1233/")
@@ -97,7 +97,7 @@ public class TodoListEndpointTest extends BaseTest {
         TodoListDTO todoList = new TodoListDTO();
 
         // when
-        when(todoListServiceView.update(any(TodoListDTO.class))).thenReturn(todoList);
+        when(todoListService.update(any(TodoListDTO.class))).thenReturn(todoList);
 
         MvcResult perform = mockMvc.perform(
                 put("/todoList/")
@@ -122,7 +122,7 @@ public class TodoListEndpointTest extends BaseTest {
         TodoListDTO todoList = new TodoListDTO();
 
         // when
-        when(todoListServiceView.deleteById(any(Long.class))).thenAnswer(Void.class);
+        when(todoListService.deleteById(any(Long.class))).thenAnswer(Void.class);
         doNothing().when(mock(TodoListServiceView.class).deleteById(isA(Long.class)));
 
         MvcResult perform = mockMvc.perform(

@@ -3,7 +3,7 @@ package com.mali.todoapp.endpoint.todoItem;
 import com.mali.todoapp.dto.ProcessResultDTO;
 import com.mali.todoapp.dto.TodoItemDTO;
 import com.mali.todoapp.endpoint.BaseEndpoint;
-import com.mali.todoapp.serviceView.todoItem.TodoItemServiceView;
+import com.mali.todoapp.service.todoItem.TodoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +20,14 @@ import java.util.List;
 public class TodoItemEndpoint extends BaseEndpoint {
 
     @Autowired
-    TodoItemServiceView todoItemServiceView;
+    TodoItemService todoItemService;
 
     @PostMapping(value = "")
     public ResponseEntity<ProcessResultDTO> save(@RequestBody TodoItemDTO itemDTO) {
 
         try {
 
-            TodoItemDTO todoItemDTO = todoItemServiceView.save(itemDTO);
+            TodoItemDTO todoItemDTO = todoItemService.save(itemDTO);
 
             return returnObjectAsProcessResult(todoItemDTO);
 
@@ -41,7 +41,7 @@ public class TodoItemEndpoint extends BaseEndpoint {
     public ResponseEntity<ProcessResultDTO> findByListId(@PathVariable("listId") Long listId) {
         try {
 
-            List<TodoItemDTO> list = todoItemServiceView.findByListId(listId);
+            List<TodoItemDTO> list = todoItemService.findByListId(listId);
 
             return returnObjectAsProcessResult(list);
 
@@ -56,7 +56,7 @@ public class TodoItemEndpoint extends BaseEndpoint {
 
         try {
 
-            itemDTO = todoItemServiceView.update(itemDTO);
+            itemDTO = todoItemService.update(itemDTO);
 
             return returnObjectAsProcessResult(itemDTO);
 
@@ -72,7 +72,7 @@ public class TodoItemEndpoint extends BaseEndpoint {
 
         try {
 
-            todoItemServiceView.deleteById(id);
+            todoItemService.deleteById(id);
 
             return new ResponseEntity<>(HttpStatus.OK);
 

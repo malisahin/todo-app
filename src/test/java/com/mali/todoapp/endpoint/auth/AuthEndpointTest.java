@@ -5,8 +5,8 @@ import com.mali.todoapp.BaseTest;
 import com.mali.todoapp.domain.UserDef;
 import com.mali.todoapp.dto.ProcessResultDTO;
 import com.mali.todoapp.dto.UserDefDTO;
+import com.mali.todoapp.repository.UserRepository;
 import com.mali.todoapp.service.user.UserService;
-import com.mali.todoapp.serviceView.user.UserServiceView;
 import com.mali.todoapp.util.Mapper;
 import org.junit.Assert;
 import org.junit.Before;
@@ -51,7 +51,7 @@ public class AuthEndpointTest extends BaseTest {
     }
 
     @MockBean
-    UserServiceView userServiceViewMock;
+    UserRepository userRepository;
 
     @MockBean
     UserService userServiceMock;
@@ -74,8 +74,8 @@ public class AuthEndpointTest extends BaseTest {
         dto.password = password;
 
         //when
-        Mockito.when(userServiceMock.login(any(UserDef.class))).thenReturn(user);
-        Mockito.when(userServiceViewMock.login(any(UserDef.class))).thenReturn(dto);
+        Mockito.when(userRepository.findUserDefByEmail(email)).thenReturn(user);
+        Mockito.when(userServiceMock.login(any(UserDef.class))).thenReturn(dto);
 
 
         // action

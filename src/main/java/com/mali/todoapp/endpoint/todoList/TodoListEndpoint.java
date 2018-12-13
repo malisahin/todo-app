@@ -3,7 +3,7 @@ package com.mali.todoapp.endpoint.todoList;
 import com.mali.todoapp.dto.ProcessResultDTO;
 import com.mali.todoapp.dto.TodoListDTO;
 import com.mali.todoapp.endpoint.BaseEndpoint;
-import com.mali.todoapp.serviceView.todoList.TodoListServiceView;
+import com.mali.todoapp.service.todoList.TodoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class TodoListEndpoint extends BaseEndpoint {
 
 
     @Autowired
-    TodoListServiceView todoListService;
+    TodoListService todoListService;
 
 
     @PostMapping(value = "")
