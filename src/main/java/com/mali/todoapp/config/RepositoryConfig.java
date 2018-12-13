@@ -11,10 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @since 11.12.2018.
  */
 @EnableJpaAuditing
-@EnableJpaRepositories
-/*@EnableAutoConfiguration(exclude = {
-		JpaRepositoriesAutoConfiguration.class
-})*/
+@EnableJpaRepositories(basePackages = {"com.mali.todoapp.repository"})
 @EntityScan("com.mali.todoapp.domain")
 @EnableTransactionManagement
 @Configuration

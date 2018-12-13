@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ public class TodoItemServiceView {
 
         TodoItem todoItem = convertDtoToDomain(itemDTO);
 
+        todoItem.setCreDate(new Date());
         todoItemService.save(todoItem);
 
         Optional<TodoItem> optionalItem = todoItemService.find(todoItem.getId());
@@ -64,8 +66,14 @@ public class TodoItemServiceView {
         if (!optionalItem.isPresent())
             throw new NullPointerException(Messages.TODO_ITEM_IS_NOT_FOUND);
 
+        TodoItem updateItem = convertDtoToDomain(itemDTO);
 
-        return convertDomainToDto(optionalItem.get());
+        updateItem.setUpdDate(new Date());
+
+        updateItem =  todoItemService.save(updateItem);
+
+
+        return convertDomainToDto(updateItem);
     }
 
     public void deleteById(Long id) {

@@ -27,8 +27,10 @@ public class UserServiceView {
     public UserDefDTO login(UserDef user) throws ValidationException {
         user = userService.login(user);
 
-        user.setPassword(null);
-        return convertDomainToDto(user);
+        UserDefDTO dto = convertDomainToDto(user);
+
+        dto.password = null;
+        return dto;
     }
 
     private UserDefDTO convertDomainToDto(UserDef domain) throws ValidationException {

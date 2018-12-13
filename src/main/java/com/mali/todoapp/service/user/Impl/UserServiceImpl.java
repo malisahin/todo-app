@@ -7,6 +7,8 @@ import com.mali.todoapp.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @author mali.sahin
  * @since 9.12.2018.
@@ -30,6 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDef create(UserDef userDef) {
+        userDef.setCreDate(new Date());
         return userRepository.save(userDef);
     }
 }

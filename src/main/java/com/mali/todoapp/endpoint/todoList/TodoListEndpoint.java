@@ -67,27 +67,6 @@ public class TodoListEndpoint extends BaseEndpoint {
 
         }
     }
-/*
-    @PostMapping(value = "list/userId/{first}/{pageSize}")
-    public ResponseEntity<ProcessResultDTO> list(
-            @RequestBody TodoListFilterDTO filter,
-            @PathVariable("userId") Long userId,
-            @PathVariable("first") Long first,
-            @PathVariable("pageSize") Long pageSize
-    ) {
-
-        filter.userId = userId;
-        filter.first = first;
-        filter.pageSize = pageSize;
-        try {
-            List<TodoListDTO> listDTOList = todoListService.findByFilter(filter);
-
-            return returnObjectAsProcessResult(listDTOList);
-
-        } catch (Exception e) {
-            return returnExceptionAsProcessResult(e);
-        }
-    }*/
 
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {

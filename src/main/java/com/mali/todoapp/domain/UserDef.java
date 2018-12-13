@@ -1,9 +1,12 @@
 package com.mali.todoapp.domain;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 /**
  * @author mali.sahin
@@ -13,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @Table(name = "USER_DEF", schema = "todoapp")
 @Entity
-public class UserDef extends BaseDomain {
+public class UserDef /*extends BaseDomain*/ {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +38,33 @@ public class UserDef extends BaseDomain {
     public UserDef(@NotBlank String email, @NotBlank String password) {
         this.email = email;
         this.password = password;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "cre_date", nullable = false, updatable = false)
+    @CreatedDate
+    private Date creDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "upd_date")
+    @LastModifiedDate
+    private Date updDate;
+
+
+    public Date getCreDate() {
+        return creDate;
+    }
+
+    public void setCreDate(Date creDate) {
+        this.creDate = creDate;
+    }
+
+    public Date getUpdDate() {
+        return updDate;
+    }
+
+    public void setUpdDate(Date updDate) {
+        this.updDate = updDate;
     }
 
     public UserDef() {

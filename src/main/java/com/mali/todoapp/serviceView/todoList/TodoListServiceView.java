@@ -7,9 +7,8 @@ import com.mali.todoapp.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import javax.validation.ValidationException;
+import java.util.*;
 
 /**
  * @author mali.sahin
@@ -22,18 +21,22 @@ public class TodoListServiceView {
     TodoListService todoListService;
 
     public TodoListDTO save(TodoListDTO todoListDTO) {
+
+        validateTodoList(todoListDTO);
+
         TodoList todoList = convertDtoToDomain(todoListDTO);
 
-        validateTodoList(todoList);
-
+        todoList.setCreDate(new Date());
         todoList = todoListService.save(todoList);
 
         return convertDomainToDto(todoList);
 
     }
 
-    private void validateTodoList(TodoList todoList) {
+    private void validateTodoList(TodoListDTO todoListDTO) {
 
+        if (Objects.nonNull(todoListDTO.id))
+            throw new ValidationException(Messages.TODO_LIST_ID_MUST_BE_NULL);
     }
 
     private TodoListDTO convertDomainToDto(TodoList domain) {
@@ -76,7 +79,13 @@ public class TodoListServiceView {
             throw new NullPointerException(Messages.TODO_LIST_IS_NOT_FOUND);
         }
 
-        return convertDomainToDto(todoList.get());
+        TodoList willUpdate = convertDtoToDomain(todoListDTO);
+
+        willUpdate.setUpdDate(new Date());
+
+        TodoList updated = todoListService.save(willUpdate);
+
+        return convertDomainToDto(updated);
     }
 
 
@@ -93,7 +102,7 @@ public class TodoListServiceView {
         return dtoList;
     }*/
 
-    public void  deleteById(Long id){
+    public void deleteById(Long id) {
         todoListService.deleteById(id);
     }
 

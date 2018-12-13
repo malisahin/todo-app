@@ -11,10 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class TodoListDTO {
 
     @JsonProperty
-    public long id;
+    public Long id;
 
     @JsonProperty
-    public long userId;
+    public Long userId;
 
     @JsonProperty
     public String name;

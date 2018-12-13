@@ -16,7 +16,6 @@ public interface TodoItemService {
 
     TodoItem save(TodoItem itemDTO);
 
-
     List<TodoItem> findByListId(Long listId);
 
     Optional<TodoItem> find(Long id);

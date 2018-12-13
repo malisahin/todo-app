@@ -1,8 +1,11 @@
 package com.mali.todoapp.domain;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author mali.sahin
@@ -13,7 +16,7 @@ import javax.persistence.*;
 @Data
 @Table(name = "TODO_ITEM", schema = "todoapp")
 @Entity
-public class TodoItem extends BaseDomain {
+public class TodoItem /*extends BaseDomain*/ {
 
     @Id
     @GeneratedValue(generator = "todo_item_generator")
@@ -26,6 +29,33 @@ public class TodoItem extends BaseDomain {
 
     @Column(name = "EXPLANATION", nullable = false)
     private String explanation;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "cre_date", nullable = false, updatable = false)
+    @CreatedDate
+    private Date creDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "upd_date")
+    @LastModifiedDate
+    private Date updDate;
+
+
+    public Date getCreDate() {
+        return creDate;
+    }
+
+    public void setCreDate(Date creDate) {
+        this.creDate = creDate;
+    }
+
+    public Date getUpdDate() {
+        return updDate;
+    }
+
+    public void setUpdDate(Date updDate) {
+        this.updDate = updDate;
+    }
 
 
     public long getId() {

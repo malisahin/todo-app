@@ -16,4 +16,5 @@ public class Messages {
     public static  String USER_IS_NOT_FOUND = "USER is not found";
     public static  String TODO_LIST_IS_NOT_FOUND = "TODO LIST is not found";
     public static  String TODO_ITEM_IS_NOT_FOUND = "TODO ITEM is not found";
+    public static  String TODO_LIST_ID_MUST_BE_NULL = "TODO LIST ID IS must be null";
 }
