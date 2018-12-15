@@ -1894,7 +1894,8 @@ var ApiProvider = (function () {
         this.util = util;
         this.userService = userService;
         //BASE_URL: string = "http://localhost:8080/";
-        this.BASE_URL = "http://ionic-todo-app.herokuapp.com/";
+        //BASE_URL: string = "http://ionic-todo-app.herokuapp.com/9495";
+        this.BASE_URL = "http://85.96.79.59/9495";
         this.TODO_LIST_URL = this.BASE_URL + "todoList/";
         this.TODO_ITEM_URL = this.BASE_URL + "todoItem/";
     }
