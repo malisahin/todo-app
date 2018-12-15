@@ -5,7 +5,6 @@ import com.mali.todoapp.dto.TodoItemDTO;
 import com.mali.todoapp.endpoint.BaseEndpoint;
 import com.mali.todoapp.service.todoItem.TodoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,16 +67,16 @@ public class TodoItemEndpoint extends BaseEndpoint {
 
 
     @DeleteMapping(value = "{id}/")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<ProcessResultDTO> delete(@PathVariable("id") Long id) {
 
         try {
 
             todoItemService.deleteById(id);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return returnObjectAsProcessResult(new TodoItemDTO());
 
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return returnExceptionAsProcessResult(e);
 
         }
     }

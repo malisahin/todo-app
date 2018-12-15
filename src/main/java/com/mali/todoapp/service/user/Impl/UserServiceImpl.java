@@ -31,7 +31,7 @@ public class UserServiceImpl extends UserMapper implements UserService {
             throw new NullPointerException(Messages.USER_IS_NOT_FOUND);
         }
 
-        UserDefDTO dto = convertDomainToDto(user);
+        UserDefDTO dto = convertDomainToDto(foundUser);
 
         dto.password = null;
         return dto;

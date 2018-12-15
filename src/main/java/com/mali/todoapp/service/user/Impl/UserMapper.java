@@ -14,7 +14,6 @@ import javax.validation.ValidationException;
 public class UserMapper {
 
      UserDefDTO convertDomainToDto(UserDef domain) throws ValidationException {
-        validateUser(domain);
 
         UserDefDTO dto = new UserDefDTO();
         dto.name = domain.getName();
