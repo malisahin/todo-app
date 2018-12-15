@@ -362,10 +362,10 @@ var map = {
 		182
 	],
 	"../pages/todo-item/todo-item.module": [
-		184
+		183
 	],
 	"../pages/todo-list/todo-list.module": [
-		183
+		184
 	]
 };
 function webpackAsyncContext(req) {
@@ -1005,46 +1005,6 @@ var RegisterPageModule = (function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodoListPageModule", function() { return TodoListPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__todo_list__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(57);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-var TodoListPageModule = (function () {
-    function TodoListPageModule() {
-    }
-    TodoListPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__todo_list__["a" /* TodoListPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__todo_list__["a" /* TodoListPage */]), __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */]
-            ],
-        })
-    ], TodoListPageModule);
-    return TodoListPageModule;
-}());
-
-//# sourceMappingURL=todo-list.module.js.map
-
-/***/ }),
-
-/***/ 184:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodoItemPageModule", function() { return TodoItemPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
@@ -1077,6 +1037,46 @@ var TodoItemPageModule = (function () {
 }());
 
 //# sourceMappingURL=todo-item.module.js.map
+
+/***/ }),
+
+/***/ 184:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodoListPageModule", function() { return TodoListPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__todo_list__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(57);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var TodoListPageModule = (function () {
+    function TodoListPageModule() {
+    }
+    TodoListPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__todo_list__["a" /* TodoListPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__todo_list__["a" /* TodoListPage */]), __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */]
+            ],
+        })
+    ], TodoListPageModule);
+    return TodoListPageModule;
+}());
+
+//# sourceMappingURL=todo-list.module.js.map
 
 /***/ }),
 
@@ -1139,8 +1139,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__providers_todo_item_endpoint_todo_item_endpoint__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_register_register_module__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers_user_service_user_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_todo_list_todo_list_module__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_todo_item_todo_item_module__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_todo_list_todo_list_module__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_todo_item_todo_item_module__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_todo_list_todo_list__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_todo_item_todo_item__ = __webpack_require__(92);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1205,8 +1205,8 @@ var AppModule = (function () {
                         { loadChildren: '../pages/anasayfa/anasayfa.module#AnasayfaPageModule', name: 'Anasayfa', segment: 'anasayfa', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/todo-list/todo-list.module#TodoListPageModule', name: 'TodoListPage', segment: 'todo-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/todo-item/todo-item.module#TodoItemPageModule', name: 'TodoItemPage', segment: 'todo-item', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/todo-item/todo-item.module#TodoItemPageModule', name: 'TodoItemPage', segment: 'todo-item', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/todo-list/todo-list.module#TodoListPageModule', name: 'TodoListPage', segment: 'todo-list', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_21_ionic_cache__["a" /* CacheModule */].forRoot(),
@@ -1894,8 +1894,8 @@ var ApiProvider = (function () {
         this.util = util;
         this.userService = userService;
         //BASE_URL: string = "http://localhost:8080/";
-        //BASE_URL: string = "http://ionic-todo-app.herokuapp.com/9495/";
-        this.BASE_URL = "http://85.96.79.59/8185/";
+        //BASE_URL: string = "http://85.96.79.59/8185/";
+        this.BASE_URL = "https://ionic-todo-app.herokuapp.com/";
         this.TODO_LIST_URL = this.BASE_URL + "todoList/";
         this.TODO_ITEM_URL = this.BASE_URL + "todoItem/";
     }
